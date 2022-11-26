@@ -23,3 +23,34 @@ code {
   position: relative;
   border-radius: 10px;
 }
+
+section {
+  margin: 10px auto;
+}
+
+.window {
+  background-color: #f0f8ff;
+  border: 1px solid #44b2e1;
+  position: fixed;
+  top: 200px;
+  left:200px;
+  width: calc(100vw - 400px);
+  height: calc(100vh - 400px);
+}
+
+.closed {
+  display: none;
+}
+
+.invisible {
+  display: none;
+}
+
+
+.img-full{
+  width: 100%;
+}
+
+.disabled {
+  color: #5c5e5f
+}
