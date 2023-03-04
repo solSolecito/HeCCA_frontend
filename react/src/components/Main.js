@@ -1,4 +1,5 @@
 import React from 'react';
+import { Input } from './Input';
 import { PopUpText } from './PopUpText';
 
 export class Main extends React.Component {
@@ -23,57 +24,7 @@ export class Main extends React.Component {
         return (
             <main>
 
-                <section>
-                    <form>
-                        <fieldset>
-                            <label>Importe la serie de la cuenca base</label>
-                            <p>
-                                <label>Buscar en mi equipo</label>
-                                <input id="fileBase" type={'file'}></input>
-                            </p>
-
-                        </fieldset>
-                        <fieldset>
-                            <input id="compare" type={'checkbox'}></input>
-                            <label>Tengo una cuenca de comparación.</label>
-                        </fieldset>
-                        <fieldset>
-                            <label>Importe la serie de la cuenca de comparación</label>
-                            <p>
-                                <label>Buscar en mi equipo</label>
-                                <input  id="fileComp" type={'file'}></input>
-                            </p>
-
-                        </fieldset>
-                        <fieldset>
-                            <p>
-                                <label>Area cuenca base</label>
-                                <input id="areaBase" type={'number'}></input>
-                                <select id="unitsBase">
-                                    <option>m²</option>
-                                    <option>ha²</option>
-                                    <option>km²</option>
-                                    <option>ft²</option>
-                                    <option>mi²</option>
-                                </select>
-                            </p>
-                            <p>
-                                <label>Area cuenca de comparación</label>
-                                <input id="areaComp" type={'number'}></input>
-                                <select id="unitsComp">
-                                    <option>m²</option>
-                                    <option>ha²</option>
-                                    <option>km²</option>
-                                    <option>ft²</option>
-                                    <option>mi²</option>
-                                </select>
-                            </p>
-                        </fieldset>
-                        <PopUpText id="input-error" className={this.state.errorClassList} text={this.state.error}/>
-                        <PopUpText id="input-warn" className={this.state.warnClassList} text={this.state.warn}/>
-                        <button  type="button" onClick={this.calcule}>Calcular</button>
-                    </form>
-                </section>
+                <Input {...this.props}/>
                 <section>
                     <div className={this.state.outputClassList}>
                         <h2>Resultados</h2>
