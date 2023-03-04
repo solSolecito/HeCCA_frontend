@@ -13,8 +13,8 @@ export class Input extends React.Component {
             outputClassList:  props.outputClassList ? props.outputClassList : 'mock invisible',
         }
         this.calcule = this.calcule.bind(this);
-        this.setWarn = this.setWarn.bind(this);
-        this.setError = this.setError.bind(this);
+        //this.setWarn = this.setWarn.bind(this);
+        //this.setError = this.setError.bind(this);
     }
 
     /* <p><button>Buscar en Drive</button></p>
@@ -111,15 +111,15 @@ export class Input extends React.Component {
         // Cuando el estado de error haya cambiado se ejecuta esto
         this.setState({ error: msg });
         const error = document.getElementById('input-error');
-        const arrayAux = this.state.errorClassList.split(', ');
+        const arrayAux = this.state.errorClassList.split(' ');
         const index = arrayAux.indexOf('closed');
 
         if (error && msg) {
-            if (index != -1) {
+            if (index !== -1) {
                 arrayAux.splice(index, 1);
             }
         } else {
-            if (index == -1) {
+            if (index === -1) {
                 arrayAux.push('closed');
             }
         }
@@ -135,13 +135,13 @@ export class Input extends React.Component {
         // Revisa que se haya subido un archivo
         console.log('Validando formato de archivo', file)
         if (!file) {
+            this.setError('No se ha subido ningun archivo');
             console.log("ERROR: No se ha subido ningun archivo")
             return false
         }
 
         // Revisa que el archivo sea csv
         const extension = file.type ? file.type : file.name.split(".").pop();
-        console.log(extension);
         if (validFileTypes.indexOf(extension) === -1) {
             console.log("ERROR: El archivo no es un csv")
             return false
@@ -200,7 +200,7 @@ export class Input extends React.Component {
 
         // Pasa un warning si el area es menor a 25 km2
         if (area < min) {
-            // this.setWarn('Estás trabajando con una microcuenca.')
+            this.setWarn('Estás trabajando con una microcuenca.');
             console.log('WARN: Estás trabajando con una microcuenca');
             return false;
         } else if (area > max) {
@@ -210,6 +210,15 @@ export class Input extends React.Component {
         }
 
         return true;
+    }
+
+    enableOutput () {
+        const arrayAux = this.state.outputClassList.split(' ');
+        const index = arrayAux.indexOf('invisible');
+        if (index !== -1) {
+            arrayAux.splice(index, 1)
+            this.setState({ outputClassList: arrayAux.join(' ') })
+        }
     }
 
     disableOutput () {
@@ -275,12 +284,7 @@ export class Input extends React.Component {
         y recibiria un arreglo de porcentajes de aprovechamiento
         */
 
-        const arrayAux = this.state.outputClassList.split(' ');
-        const index = arrayAux.indexOf('invisible');
-        if (index !== -1) {
-            arrayAux.splice(index, 1)
-            this.setState({ outputClassList: arrayAux.join(' ') })
-        }
+        this.enableOutput();
     }
 
 }
