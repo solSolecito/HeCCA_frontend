@@ -3,7 +3,7 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
-  background-image: linear-gradient( 180deg, #fff0 0%, #44b2e1  100%), url('../images/bg_relief.jpg');
+  background-image: linear-gradient( 180deg, #fff0 0%, #44b2e1  150%), url('../images/bg_relief.jpg');
   background-attachment: fixed;
   background-size: cover;
 }
@@ -15,13 +15,9 @@ code {
 
 .App {
   width: 80%;
-  background-color: #f0f8ff99;
-  padding: 10px;
   max-width: 960px;
   min-width: 360px;
   margin:10px auto;
-  position: relative;
-  border-radius: 10px;
 }
 
 section {
