@@ -48,6 +48,8 @@ export class Input extends React.Component {
 
                         </fieldset> */}
 
+           <div className="input-section">
+           
             <div className="input-section_itemLarge">
               <h3 className="input-section_itemTitle">
                 Importe la serie de la cuenca base
@@ -70,13 +72,6 @@ export class Input extends React.Component {
               </div>
             </div>
 
-            <div className="input-section_itemShort">
-              <input id="compare" name="compare" type={"checkbox"} 
-              
-              onClick={this.showComparisonBasin} value="false"></input>
-              <label for="compare">Tengo una cuenca de comparación.</label>
-            </div>
-
             <div className="input-section_itemLarge" id="BasinComp">
               <h3 className="input-section_itemTitle">
                 Importe la serie de la cuenca de comparación
@@ -87,12 +82,13 @@ export class Input extends React.Component {
                 id="cuencaComparacion"
               >
                 <input
+                  name="fileComp"
                   id="fileComp"
                   type={"file"}
                   accept=".csv, .xslx, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
                   className="inputfile inputfile-4"
                 />
-                <label for="file-5">
+                <label for="fileComp">
                   <figure>
                     <img src={loadDataImage} alt="cloud data send" />
                   </figure>
@@ -100,6 +96,15 @@ export class Input extends React.Component {
                 </label>
               </div>
             </div>
+
+           </div>
+
+           <div className="input-section_itemShort">
+              <input id="compare" name="compare" type={"checkbox"} 
+              
+              onClick={this.showComparisonBasin} value="false"></input>
+              <label for="compare">Tengo una cuenca de comparación.</label>
+           </div>
 
             <fieldset className="compare-input">
               <div className="compare-input__container">
@@ -159,19 +164,19 @@ export class Input extends React.Component {
     );
   }
 
-  showComparisonBasin() {
-    const checkbox = document.getElementById("compare");
-    const box = document.getElementById("BasinComp");
+  // showComparisonBasin() {
+  //   const checkbox = document.getElementById("compare");
+  //   const box = document.getElementById("BasinComp");
 
-    checkbox.addEventListener("click", function handleClick() {
-      if (checkbox.checked) {
-        // this.setbasinComparison(true);
-        box.style.display = "grid";
-      } else {
-        box.style.display = "none";
-      }
-    });
-  }
+  //   checkbox.addEventListener("click", function handleClick() {
+  //     if (checkbox.checked) {
+  //       // this.setbasinComparison(true);
+  //       box.style.display = "grid";
+  //     } else {
+  //       box.style.display = "none";
+  //     }
+  //   });
+  // }
 
   setWarn(msg) {
     // Cuando el estado de warning haya cambiado se ejecuta
