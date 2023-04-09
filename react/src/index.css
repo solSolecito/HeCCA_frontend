@@ -12,13 +12,13 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
-
+/* 
 .App {
   width: 80%;
   max-width: 960px;
   min-width: 360px;
   margin:10px auto;
-}
+} */
 
 section {
   margin: 10px auto;
