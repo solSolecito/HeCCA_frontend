@@ -1,16 +1,58 @@
-header{
-    background-color: #f0f8ff99;
+.header-section {
+    background-color: #ffffff;
     padding: 10px 25px;
-    margin: 20px 0;
-    border-radius: 30px 30px 0 0;
+    /* margin: 20px 0; */
+    /* border-radius: 30px 30px 0 0; */
     text-align: left;
     color: #000;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+
+
+.header-section_name {
+
+}
+
+.header-section_name h1 {
+    padding: 0px 25px;
+    margin-top: 0;
 }
     
-header p {
-    font-size: 20px;
+.header-section_name small{
+    font-size: 15px;
+    padding: 0px 25px;
 }
-        
+
+.header-section_brand {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+}
+
+/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+@media (max-width:  720px) {
+    header {
+        justify-content: space-between;
+    }
+
+    header h1 {
+        font-size: 20px;       
+    }
+
+    header p {
+        display: none;
+    }
+
+    header img {
+        width: 80px;
+    }
+    /* .sidebar {padding-top: 15px;} */
+    /* .sidebar a {font-size: 18px;} */
+}
 
 
 
