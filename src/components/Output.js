@@ -17,7 +17,7 @@ export class Output extends React.Component {
         return (
             <section>
                 <div display={this.state.display}>
-                    <img className="img-full" src='../../images/mock_graph.png' alt=""/>
+                    <img className="img-full" src='../images/mock_graph.png' alt=""/>
                 </div>
             </section>
         )
