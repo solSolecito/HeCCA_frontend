@@ -8,7 +8,7 @@ This is a tool created by students from National University of Colombia about th
 
 ### Primeros pasos en el repositorio.
 
-Si recien llegas al equipo o al proyecto, tendrás que descargar este repositorio. 
+Si recien llegas al equipo o al proyecto tendrás que descargar el repositorio y asegurarte de que puedes correrlo en el navegador, para eso debes seguir los siguientes pasos: 
 
 1. **Descarga el Repositorio:** Copia en tu terminal el comando `gh repo clone hidrourbana/HeCCA_2.0`.
 
