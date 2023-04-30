@@ -1,5 +1,5 @@
 import React from 'react';
-import { Input } from './Input';
+import { Input } from './input/Input';
 // import { PopUpText } from './PopUpText';
 
 export class Main extends React.Component {
