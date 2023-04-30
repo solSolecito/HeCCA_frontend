@@ -63,7 +63,7 @@ export class Input extends React.Component {
                   data-multiple-caption="{count} files selected"
                   accept=".csv, .xslx, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
                 />
-                <label for="fileBase">
+                <label htmlFor="fileBase">
                   <figure>
                     <img src={loadDataImage} alt="cloud data send" />
                   </figure>
@@ -88,7 +88,7 @@ export class Input extends React.Component {
                   accept=".csv, .xslx, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
                   className="inputfile inputfile-4"
                 />
-                <label for="fileComp">
+                <label htmlFor="fileComp">
                   <figure>
                     <img src={loadDataImage} alt="cloud data send" />
                   </figure>
@@ -103,7 +103,7 @@ export class Input extends React.Component {
               <input id="compare" name="compare" type={"checkbox"} 
               
               onClick={this.showComparisonBasin} value="false"></input>
-              <label for="compare">Tengo una cuenca de comparación.</label>
+              <label htmlFor="compare">Tengo una cuenca de comparación.</label>
            </div>
 
             <fieldset className="compare-input">
@@ -186,11 +186,11 @@ export class Input extends React.Component {
     const index = arrayAux.indexOf("closed");
 
     if (warn && msg) {
-      if (index != -1) {
+      if (index !== -1) {
         arrayAux.splice(index, 1);
       }
     } else {
-      if (index == -1) {
+      if (index === -1) {
         arrayAux.push("closed");
       }
     }
@@ -254,12 +254,16 @@ export class Input extends React.Component {
     switch (units) {
       case "km":
         areakm2 = area;
+        break;
       case "m":
         areakm2 = area / 1000000;
+        break;
       case "ha":
         areakm2 = area / 10000;
+        break;
       default:
         areakm2 = area;
+        break;
     }
     this.validateDimensions(areakm2);
     return areakm2;

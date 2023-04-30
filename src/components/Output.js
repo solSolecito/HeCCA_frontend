@@ -1,5 +1,5 @@
 import React from 'react';
-import { PopUpText } from './PopUpText';
+// import { PopUpText } from './PopUpText';
 
 export class Output extends React.Component {
     constructor(props) {
@@ -17,7 +17,7 @@ export class Output extends React.Component {
         return (
             <section>
                 <div display={this.state.display}>
-                    <img class="img-full" src='../../images/mock_graph.png'/>
+                    <img className="img-full" src='../../images/mock_graph.png' alt=""/>
                 </div>
             </section>
         )

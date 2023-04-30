@@ -13,7 +13,7 @@ export class PopUpText extends React.Component {
     render() {
         return (
             <div id={this.state.id} className={this.state.classList}>
-                <div class="header-window"> 
+                <div className="header-window"> 
                     <p id="btn-close-window" onClick={this.close}>x</p>
                 </div>
                 <p>{this.state.text}</p>
