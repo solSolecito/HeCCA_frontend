@@ -1,166 +1,185 @@
 import React from 'react';
-import { PopUpText } from './PopUpWindow';
+import { PopUpText } from '../PopUpWindow';
 
 import '../input.css';
 import loadDataImage from '../images/loadData.png';
 export class Input extends React.Component {
-    constructor(props) {
-      super(props);
-      this.state = {
-          file: props.file ? props.file : 'No se han seleccionado archivos',
-          error: props.error ? props.error : '',
-          errorClassList: props.errorClassList ? props.errorClassList : 'window closed',
-          warn: props.warn ? props.warn : '',
-          warnClassList: props.warnClassList ? props.warnClassList : 'window closed',
-          outputClassList:  props.outputClassList ? props.outputClassList : 'mock invisible',
-      }
-        this.calcule = this.calcule.bind(this);
-        //this.setWarn = this.setWarn.bind(this);
-        //this.setError = this.setError.bind(this);
+  constructor(props) {
+    super(props);
+    this.state = {
+      file: props.file ? props.file : 'No se han seleccionado archivos',
+      error: props.error ? props.error : '',
+      errorClassList: props.errorClassList ? props.errorClassList : 'window closed',
+      warn: props.warn ? props.warn : '',
+      warnClassList: props.warnClassList ? props.warnClassList : 'window closed',
+      outputClassList: props.outputClassList ? props.outputClassList : 'mock invisible',
     }
+    this.calcule = this.calcule.bind(this);
+    //this.setWarn = this.setWarn.bind(this);
+    //this.setError = this.setError.bind(this);
+  }
 
   /* <p><button>Buscar en Drive</button></p>
     <p>{this.state.file}</p> */
 
-    render() {
-      return (
-          <>
-              <section>
-                  <form>
-            {/* <fieldset>
-                            <label>Importe la serie de la cuenca base</label>
-                            <p>
-                                <label>Buscar en mi equipo</label>
-                                <input id="fileBase" type={'file'} accept=".csv, .xslx, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" ></input>
-                            </p>
+  render() {
+    return (
+      <section className="input">
+        <h2>Carga de Datos</h2>
+        <form>
+          <fieldset title="Serie Cuenca Base">
 
-                        </fieldset>
-                        <fieldset>
-                            <input id="compare" type={'checkbox'}></input>
-                            <label>Tengo una cuenca de comparación.</label>
-                        </fieldset>
-                        <fieldset className="compare-input">
-                            <label>Importe la serie de la cuenca de comparación</label>
-                            <p>
-                                <label>Buscar en mi equipo</label>
-                                <input id="fileComp" type={'file'} accept=".csv, .xslx, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"></input>
-                            </p>
+          </fieldset>
+          <fieldset title="Serie Cuenca Alt">
 
-                        </fieldset> */}
+          </fieldset>
+          <fieldset title="Areas">
 
-           <div className="input-section">
-           
-            <div className="input-section_itemLarge">
-              <h3 className="input-section_itemTitle">
-                Importe la serie de la cuenca base
-              </h3>
-              <div className="input-section_itemContainer">
-                <input
-                  name="fileBase"
-                  id="fileBase"
-                  type={"file"}
-                  className="inputfile"
-                  data-multiple-caption="{count} files selected"
-                  accept=".csv, .xslx, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-                />
-                <label htmlFor="fileBase">
-                  <figure>
-                    <img src={loadDataImage} alt="cloud data send" />
-                  </figure>
-                  <span>Buscar en mi equipo</span>
-                </label>
-              </div>
+          </fieldset>
+          <button>Calcular</button>
+        </form>
+
+
+      </section>
+
+      /*
+        <>
+            <section>
+                <form>
+          {/* <fieldset>
+                          <label>Importe la serie de la cuenca base</label>
+                          <p>
+                              <label>Buscar en mi equipo</label>
+                              <input id="fileBase" type={'file'} accept=".csv, .xslx, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" ></input>
+                          </p>
+
+                      </fieldset>
+                      <fieldset>
+                          <input id="compare" type={'checkbox'}></input>
+                          <label>Tengo una cuenca de comparación.</label>
+                      </fieldset>
+                      <fieldset className="compare-input">
+                          <label>Importe la serie de la cuenca de comparación</label>
+                          <p>
+                              <label>Buscar en mi equipo</label>
+                              <input id="fileComp" type={'file'} accept=".csv, .xslx, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"></input>
+                          </p>
+
+                      </fieldset> }
+
+         <div className="input-section">
+         
+          <div className="input-section_itemLarge">
+            <h3 className="input-section_itemTitle">
+              Importe la serie de la cuenca base
+            </h3>
+            <div className="input-section_itemContainer">
+              <input
+                name="fileBase"
+                id="fileBase"
+                type={"file"}
+                className="inputfile"
+                data-multiple-caption="{count} files selected"
+                accept=".csv, .xslx, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+              />
+              <label htmlFor="fileBase">
+                <figure>
+                  <img src={loadDataImage} alt="cloud data send" />
+                </figure>
+                <span>Buscar en mi equipo</span>
+              </label>
             </div>
-
-            <div className="input-section_itemLarge" id="BasinComp">
-              <h3 className="input-section_itemTitle">
-                Importe la serie de la cuenca de comparación
-              </h3>
-
-              <div
-                className="box input-section_itemContainer"
-                id="cuencaComparacion"
-              >
-                <input
-                  name="fileComp"
-                  id="fileComp"
-                  type={"file"}
-                  accept=".csv, .xslx, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-                  className="inputfile inputfile-4"
-                />
-                <label htmlFor="fileComp">
-                  <figure>
-                    <img src={loadDataImage} alt="cloud data send" />
-                  </figure>
-                  <span>Buscar en mi equipo</span>
-                </label>
-              </div>
-            </div>
-
-           </div>
-
-           <div className="input-section_itemShort">
-              <input id="compare" name="compare" type={"checkbox"} 
-              
-              onClick={this.showComparisonBasin} value="false"></input>
-              <label htmlFor="compare">Tengo una cuenca de comparación.</label>
-           </div>
-
-            <fieldset className="compare-input">
-              <div className="compare-input__container">
-              <label className="compare-input__title">Area cuenca base</label>
-                <input className="compare-input__input" id="areaBase" type={"number"}></input>
-                <select className="compare-input__select" id="unitsBase">
-                  <option>m²</option>
-                  <option>ha²</option>
-                  <option>km²</option>
-                  <option>ft²</option>
-                  <option>mi²</option>
-                </select>
-              </div>
-              <div className="compare-input__container">
-              <label className="compare-input__title">Area cuenca de comparación</label>
-                <input className="compare-input__input" id="areaComp" type={"number"}></input>
-                <select className="compare-input__select" id="unitsComp">
-                  <option>m²</option>
-                  <option>ha²</option>
-                  <option>km²</option>
-                  <option>ft²</option>
-                  <option>mi²</option>
-                </select>
-              </div>
-                
-                
-            </fieldset>
-
-            <PopUpText
-              id="input-error"
-              className={this.state.errorClassList}
-              text={this.state.error}
-            />
-            <PopUpText
-              id="input-warn"
-              className={this.state.warnClassList}
-              text={this.state.warn}
-            />
-            <div className="btn-submit_container">
-              <button className="btn-submit_btn" type="button" onClick={this.calcule}>
-                Calcular
-              </button>
-            </div>
-            
-          </form>
-        </section>
-
-        <section>
-          <div className={this.state.outputClassList}>
-            <h2>Resultados</h2>
-            <img
-              className="img-full" src="http://localhost:3000/mock_graph.png" alt="resultados analisis"
-            />
           </div>
-        </section>
-      </>
+
+          <div className="input-section_itemLarge" id="BasinComp">
+            <h3 className="input-section_itemTitle">
+              Importe la serie de la cuenca de comparación
+            </h3>
+
+            <div
+              className="box input-section_itemContainer"
+              id="cuencaComparacion"
+            >
+              <input
+                name="fileComp"
+                id="fileComp"
+                type={"file"}
+                accept=".csv, .xslx, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+                className="inputfile inputfile-4"
+              />
+              <label htmlFor="fileComp">
+                <figure>
+                  <img src={loadDataImage} alt="cloud data send" />
+                </figure>
+                <span>Buscar en mi equipo</span>
+              </label>
+            </div>
+          </div>
+
+         </div>
+
+         <div className="input-section_itemShort">
+            <input id="compare" name="compare" type={"checkbox"} 
+            
+            onClick={this.showComparisonBasin} value="false"></input>
+            <label htmlFor="compare">Tengo una cuenca de comparación.</label>
+         </div>
+
+          <fieldset className="compare-input">
+            <div className="compare-input__container">
+            <label className="compare-input__title">Area cuenca base</label>
+              <input className="compare-input__input" id="areaBase" type={"number"}></input>
+              <select className="compare-input__select" id="unitsBase">
+                <option>m²</option>
+                <option>ha²</option>
+                <option>km²</option>
+                <option>ft²</option>
+                <option>mi²</option>
+              </select>
+            </div>
+            <div className="compare-input__container">
+            <label className="compare-input__title">Area cuenca de comparación</label>
+              <input className="compare-input__input" id="areaComp" type={"number"}></input>
+              <select className="compare-input__select" id="unitsComp">
+                <option>m²</option>
+                <option>ha²</option>
+                <option>km²</option>
+                <option>ft²</option>
+                <option>mi²</option>
+              </select>
+            </div>
+              
+              
+          </fieldset>
+
+          <PopUpText
+            id="input-error"
+            className={this.state.errorClassList}
+            text={this.state.error}
+          />
+          <PopUpText
+            id="input-warn"
+            className={this.state.warnClassList}
+            text={this.state.warn}
+          />
+          <div className="btn-submit_container">
+            <button className="btn-submit_btn" type="button" onClick={this.calcule}>
+              Calcular
+            </button>
+          </div>
+          
+        </form>
+      </section>
+
+      <section>
+        <div className={this.state.outputClassList}>
+          <h2>Resultados</h2>
+          <img
+            className="img-full" src="http://localhost:3000/mock_graph.png" alt="resultados analisis"
+          />
+        </div>
+      </section>
+    </>*/
     );
   }
 
