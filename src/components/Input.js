@@ -1,8 +1,8 @@
 import React from 'react';
-import { PopUpText } from './PopUpText';
+import { PopUpText } from './PopUpWindow';
 
 import '../input.css';
-import loadDataImage from '../images/loadData.png';
+import loadDataImage from '../../images/loadData.png';
 export class Input extends React.Component {
     constructor(props) {
       super(props);
