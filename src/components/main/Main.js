@@ -1,5 +1,6 @@
 import React from 'react';
-import { Input } from './input/Input';
+import './styles.css'; 
+import { Input } from '../input/Input';
 // import { PopUpText } from './PopUpText';
 
 export class Main extends React.Component {

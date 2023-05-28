@@ -1,5 +1,5 @@
 import { Header } from "./components/Header.js";
-import { Main } from "./components/Main.js";
+import { Main } from "./components/main/Main.js";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
