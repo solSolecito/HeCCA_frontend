@@ -1,8 +1,8 @@
 import React from 'react';
 
-import '../header.css'; 
+import './header.css'; 
 
-import logo from "../images/Logo.png" ; 
+import logo from "./../../images/Logo.png" ; 
 export class Header extends React.Component {
     render() {
         return (

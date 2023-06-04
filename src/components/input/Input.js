@@ -1,6 +1,5 @@
 import React from 'react';
 import './styles.css';
-import loadDataImage from '../../images/loadData.png';
 
 export class Input extends React.Component {
 	constructor(props) {
@@ -91,18 +90,20 @@ export class Input extends React.Component {
 						<p className="message invisible" id="msg-fs-areas"></p>
 					</fieldset>
 					
-					<fieldset title="Modelo Hidraulico">
-						<legend>Modelo Hidraulico de la Cuenca</legend>
-
-					</fieldset>
-					<fieldset title="Tipologias">
-						<legend>Tipo de los rios pertenecientes a la cuenca</legend>
-
-					</fieldset>
-					<button onClick={this.calcule}>Calcular</button>
+					<div className='container-btns'>
+					<button className='btn btn-main' onClick={this.calcule}>Calcular</button>
+					</div>
 				</form>
 			</section>
 		);
+		/*
+		<fieldset title="Modelo Hidraulico">
+			<legend>Modelo Hidraulico de la Cuenca</legend>
+		</fieldset>
+		<fieldset title="Tipologias">
+			<legend>Tipo de los rios pertenecientes a la cuenca</legend>
+		</fieldset>
+		*/
 	}
 	
 	setVisibility(id, visible) {
@@ -121,7 +122,7 @@ export class Input extends React.Component {
 	setMsg(id, msg) {
 		const msgDiv = document.getElementById(id);
 		try {
-			if (msg == "") {
+			if (msg === "") {
 				this.setVisibility(id, false);
 			} else {
 				msgDiv.innerHTML = msg;
@@ -321,6 +322,8 @@ export class Input extends React.Component {
 			const validationDims = [this.validateDimensions(cuencaBase.area), this.validateDimensions(cuencaAlt.area)];
 			this.setMsg('msg-fs-areas', validationDims[0].valid ? validationDims[1].msg : validationDims[0].msg );
 		}
+
+		alert('Calculando')
 
 		// Llama a API.
 		/*

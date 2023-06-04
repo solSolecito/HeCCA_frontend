@@ -43,6 +43,19 @@ input, label {
     grid-gap: 40px;
 }
 
+.container-btns {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.btn {
+    background-color: #6AB5DE;
+    padding: 4px;
+    border: none;
+    color:#fff
+}
+
 @media (max-width: 820px) {
     .input-section {
         flex-direction: column;
