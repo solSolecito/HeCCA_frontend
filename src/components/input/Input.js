@@ -14,6 +14,7 @@ export class Input extends React.Component {
 		}
 		this.calcule = this.calcule.bind(this);
 		this.setVisFileAlt = this.setVisFileAlt.bind(this);
+		this.setVisFileQ = this.setVisFileQ.bind(this);
 	}
 
 	render() {
@@ -35,13 +36,16 @@ export class Input extends React.Component {
 								required
 							/>
 						</p>
-						<p>
+
+						<p className="message invisible" id="msg-fs-file"></p>
+					</fieldset>
+<fieldset>
+	<legend>Rellenado de datos</legend>
+	<p>
 							<input id="inp-checker-alt" name="inp-checker-alt" type="checkbox" onChange={this.setVisFileAlt} />
 							<label for="inp-checker-alt">Tengo una cuenca de comparación</label>
 						</p>
-						<p className="message invisible" id="msg-fs-file"></p>
-					</fieldset>
-
+</fieldset>
 					<fieldset id="fs-file-alt" title="Serie Cuenca Alt" className="invisible">
 						<legend>Inserte Serie de la Cuenca de Comparación</legend>
 						<p>
@@ -89,9 +93,35 @@ export class Input extends React.Component {
 						</div>
 						<p className="message invisible" id="msg-fs-areas"></p>
 					</fieldset>
-					
+					<fieldset>
+						<legend>Umbrales Morfometricos</legend>
+						<p>
+							<input id="inp-checker-q" name="inp-checker-q" type="checkbox" onChange={this.setVisFileQ} />
+							<label for="inp-checker-q">Tengo un modelo hidraulico de mi cuenca base</label>
+						</p>
+					</fieldset>
+
+					<fieldset id="fs-q" title="Umbrales Morfometricos" className='invisible'>
+						<legend></legend>
+						<div className='cont-q'>
+							<label for="inp-qb">
+								<span>Qb</span>
+								<input className="compare-input__input" id="inp-qb" name="inp-qb" type={"number"}></input>
+								<span>años</span>
+							</label>
+						</div>
+						<div className='cont-q'>
+							<label for="inp-qtq">
+								<span>Qtq</span>
+								<input className="compare-input__input" id="inp-qtq" name="inp-qtq" type={"number"}></input>
+								<span>años</span>
+							</label>
+
+						</div>
+					</fieldset>
+
 					<div className='container-btns'>
-					<button className='btn btn-main' onClick={this.calcule}>Calcular</button>
+						<button className='btn btn-main' onClick={this.calcule}>Calcular</button>
 					</div>
 				</form>
 			</section>
@@ -103,9 +133,20 @@ export class Input extends React.Component {
 		<fieldset title="Tipologias">
 			<legend>Tipo de los rios pertenecientes a la cuenca</legend>
 		</fieldset>
+		<fieldset title="Umbrales Morfometricos">
+			<legend>Tipo de los rios pertenecientes a la cuenca</legend>
+			<div>
+				<label for="inp-qb">Qb</label>
+				<input className="compare-input__input" id="inp-qb" name="inp-qb" type={"number"}></input>
+			</div>
+			<div>
+				<label for="inp-qtq">Qtq</label>
+				<input className="compare-input__input" id="inp-qtq" name="inp-qtq" type={"number"}></input>
+			</div>
+		</fieldset>
 		*/
 	}
-	
+
 	setVisibility(id, visible) {
 		const div = document.getElementById(id);
 		try {
@@ -139,30 +180,38 @@ export class Input extends React.Component {
 		this.setVisibility('fs-areas', checked)
 	}
 
+	setVisFileQ(e) {
+		const checked = e.target.checked;
+		this.setVisibility('fs-q', checked)
+	}
+
 	validateCsv(file) {
+
 		const validFileTypes = [
 			"csv",
-			"xslx",
-			"application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+			"xslx", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
 		];
+
 		// Revisa que se haya subido un archivo
-		console.log("Validando formato de archivo de ", file.name);
 
 		if (!file) {
 			console.log("ERROR: No se ha subido ningun archivo");
 			return {
 				valid: false,
-				msg: 'No se ha subido ningun archivo'
+				msg: 'ERROR: No se ha subido ningun archivo'
 			};
 		}
 
 		// Revisa que el archivo sea csv
+
+		console.log("Validando formato de archivo de ", file.name);
+
 		const extension = file.type ? file.type : file.name.split(".").pop();
 		if (validFileTypes.indexOf(extension) === -1) {
 			console.log("ERROR: El archivo no es un csv");
 			return {
 				valid: false,
-				msg: 'El archivo no es un csv'
+				msg: 'ERROR: El archivo no es un csv'
 			};
 		}
 
@@ -206,7 +255,7 @@ export class Input extends React.Component {
 			console.log("ERROR: El area ingresada no es un número");
 			return {
 				valid: false,
-				msg: 'El area ingresada no es un número'
+				msg: 'ERROR: El area ingresada no es un número'
 			};
 		}
 
@@ -216,7 +265,7 @@ export class Input extends React.Component {
 			console.log("ERROR: El area ingresada es menor a cero");
 			return {
 				valid: false,
-				msg: 'El area ingresada es menor a cero'
+				msg: 'ERROR: El area ingresada es menor a cero'
 			};
 		}
 		return {
@@ -235,7 +284,7 @@ export class Input extends React.Component {
 			console.log("WARN: Estás trabajando con una microcuenca");
 			return {
 				valid: false,
-				msg: 'Estás trabajando con una microcuenca'
+				msg: 'ADVERTENCIA: Estás trabajando con una microcuenca'
 			};
 		} else if (area > max) {
 			// this.setWarn( 'El area ingresada es mayor al area de la cuenca del Amazonas.' );
@@ -244,7 +293,7 @@ export class Input extends React.Component {
 			);
 			return {
 				valid: false,
-				msg: 'El area ingresada es mayor al area de la cuenca del Amazonas'
+				msg: 'ADVERTENCIA: El area ingresada es mayor al area de la cuenca del Amazonas'
 			};
 		}
 		return {
@@ -272,7 +321,7 @@ export class Input extends React.Component {
 	}
 
 	calcule(e) {
-		
+
 		// Recoge datos y los valida
 		e.preventDefault();
 
@@ -298,7 +347,7 @@ export class Input extends React.Component {
 			cuencaAlt.csv = document.getElementById("inp-file-alt").files[0];
 
 			const validationAlt = this.validateCsv(cuencaAlt.csv);
-			this.setMsg('msg-fs-file', validationAlt.msg);
+			this.setMsg('msg-fs-file-alt', validationAlt.msg);
 
 			if (!validationBase.valid) {
 				return [];
@@ -308,19 +357,19 @@ export class Input extends React.Component {
 			const areaAlt = document.getElementById("inp-area-alt").value;
 
 			const validationAreas = [this.validateNum(parseFloat(areaBase)), this.validateNum(parseFloat(areaAlt))];
-			this.setMsg('msg-fs-areas', validationAreas[0].valid ? validationAreas[1].msg : validationAreas[0].msg );
+			this.setMsg('msg-fs-areas', validationAreas[0].valid ? validationAreas[1].msg : validationAreas[0].msg);
 
-			if ( validationAreas.find(a => !a.valid) ) {
+			if (validationAreas.find(a => !a.valid)) {
 				return [];
-			} 
+			}
 
 			const unitsBase = document.getElementById("inp-units").value;
 			const unitsAlt = document.getElementById("inp-units-alt").value;
 			cuencaBase.area = this.areaToKm2(areaBase, unitsBase);
 			cuencaAlt.area = this.areaToKm2(areaAlt, unitsAlt);
-			
+
 			const validationDims = [this.validateDimensions(cuencaBase.area), this.validateDimensions(cuencaAlt.area)];
-			this.setMsg('msg-fs-areas', validationDims[0].valid ? validationDims[1].msg : validationDims[0].msg );
+			this.setMsg('msg-fs-areas', validationDims[0].valid ? validationDims[1].msg : validationDims[0].msg);
 		}
 
 		alert('Calculando')

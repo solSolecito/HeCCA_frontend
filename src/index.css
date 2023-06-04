@@ -2,21 +2,21 @@
 	font-family: 'Ancizar Sans';
 	src: local('Ancizar Sans'), url('assets/AncizarSans/AncizarSans-Regular_02042016.otf') format('opentype');
 	font-style: normal;
-	font-weight: normal;
+	font-weight: 400;
 }
 
 @font-face {
 	font-family: 'Ancizar Sans';
 	src: local('Ancizar Sans'), url('assets/AncizarSans/AncizarSans-Bold_02042016.otf') format('opentype');
 	font-style: normal;
-	font-weight: bold;
+	font-weight: 700;
 }
 
 @font-face {
 	font-family: 'Ancizar Sans';
 	src: local('Ancizar Sans'), url('assets/AncizarSans/AncizarSans-Extrabold_02042016.otf') format('opentype');
 	font-style: normal;
-	font-weight: extrabold;
+	font-weight: 800;
 }
 
 * {
