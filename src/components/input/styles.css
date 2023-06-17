@@ -146,13 +146,9 @@ select, option {
     padding: 15px;    
 } */
 
-.compare-input__container {}
-
 .compare-input__title {
     padding-right: 20px;
 }
-
-.compare-input__input {}
 
 .compare-input__select {
     background-color: #6AB5DE;
