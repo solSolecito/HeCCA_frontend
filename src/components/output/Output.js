@@ -1,7 +1,7 @@
 import React from 'react';
 // import { PopUpText } from './PopUpText';
 
-var map = L.map('map').setView([51.505, -0.09], 13);
+/* var map = L.map('map').setView([51.505, -0.09], 13);
 
 L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -9,32 +9,24 @@ L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 
 L.marker([51.5, -0.09]).addTo(map)
     .bindPopup('A pretty CSS popup.<br> Easily customizable.')
-    .openPopup();
+    .openPopup(); */
 
-export class Output extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            display:  props.outputdisplay ? props.outputdisplay : 'none',
-        }
-        this.show = this.show.bind(this);
-    }
+export function Output(props) {
+    return (
+        <section>
+            <div display={props.display}>
+                <img className="img-full" id="map-location" src='../images/mock_graph.png' alt="" />
+            </div>
+            <div display={props.display}>
+                <img className="img-full" id="img-series" src='../images/mock_graph.png' alt="" />
+            </div>
+            <div display={props.display}>
+                <img className="img-full" id="img-umbrales" src='../images/mock_graph.png' alt="" />
+            </div>
+        </section>
+    )
+}
 
-    /* <p><button>Buscar en Drive</button></p>
-    <p>{this.state.file}</p> */
-
-    render() {
-        return (
-            <section>
-                <div display={this.state.display}>
-                    <img className="img-full" src='../images/mock_graph.png' alt=""/>
-                </div>
-            </section>
-        )
-    }
-
-    setDisplay (display) {
-        this.setState({display:display});
-    }
-
+function setDisplay(display) {
+   return ({ display: display });
 }
