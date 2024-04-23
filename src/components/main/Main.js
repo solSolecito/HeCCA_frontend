@@ -1,6 +1,8 @@
 import React from 'react';
-import { Input } from './Input';
-import { PopUpText } from './PopUpText';
+import { InputSection } from '../inputSection/InputSection';
+import { PreSection } from '../preSection/index';
+import { OutputSection } from '../outputSection/index';
+import './styles.css';
 
 export class Main extends React.Component {
     constructor(props) {
@@ -23,8 +25,9 @@ export class Main extends React.Component {
     render() {
         return (
             <main>
-
-                <Input {...this.props}/>
+                <InputSection {...this.props}/>
+                <PreSection/>
+                <OutputSection/>
                 <section>
                     <div className={this.state.outputClassList}>
                         <h2>Resultados</h2>
@@ -43,11 +46,11 @@ export class Main extends React.Component {
         const index = arrayAux.indexOf('closed');
         
         if( warn && msg ) {
-            if(index != -1){
+            if(index !== -1){
                 arrayAux.splice(index, 1);
             }
         } else {
-            if(index == -1){
+            if(index === -1){
                 arrayAux.push('closed');
             }
         }

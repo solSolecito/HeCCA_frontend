@@ -1,11 +1,11 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  background-image: linear-gradient( 180deg, #fff0 0%, #44b2e1  150%), url('../images/bg_relief.jpg');
+  font-family: 'Ancizar Sans', 'Roboto', sans-serif;
+  background-color: #fff;
+  background-image: url('./assets/fondo_ondas_azul.png');
   background-attachment: fixed;
-  background-size: cover;
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 
 code {
@@ -19,10 +19,6 @@ code {
   min-width: 360px;
   margin:10px auto;
 } */
-
-section {
-  margin: 10px auto;
-}
 
 .window {
   background-color: #f0f8ff;

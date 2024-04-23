@@ -1,5 +1,5 @@
 import React from 'react';
-import { PopUpText } from './PopUpText';
+import { PopUpText } from '../popup/PopUpText';
 
 export class Output extends React.Component {
     constructor(props) {
