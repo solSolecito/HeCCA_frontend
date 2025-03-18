@@ -1,48 +1,38 @@
 body {
-  margin: 0;
-  font-family: 'Ancizar Sans', 'Roboto', sans-serif;
-  background-color: #fff;
-  background-image: url('./assets/fondo_ondas_azul.png');
-  background-attachment: fixed;
-  background-size: contain;
-  background-repeat: no-repeat;
+    margin: 0;
+    font-family: "Ancizar Sans", "Roboto", sans-serif;
+    background-color: #fff;
+    background-image: url("./assets/mainBG.png");
+    background-attachment: fixed;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+@media (orientation: portrait) {
+    body {
+        background-position: bottom;
+    }
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+    font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+        monospace;
 }
-/* 
-.App {
-  width: 80%;
-  max-width: 960px;
-  min-width: 360px;
-  margin:10px auto;
-} */
 
 .window {
-  background-color: #f0f8ff;
-  border: 1px solid #44b2e1;
-  position: fixed;
-  top: 200px;
-  left:200px;
-  width: calc(100vw - 400px);
-  height: calc(100vh - 400px);
+    background-color: #f0f8ff;
+    border: 1px solid #44b2e1;
+    position: fixed;
+    top: 200px;
+    left: 200px;
+    width: calc(100vw - 400px);
+    height: calc(100vh - 400px);
 }
 
-.closed {
-  display: none;
-}
-
-.invisible {
-  display: none;
-}
-
-
-.img-full{
-  width: 100%;
+.img-full {
+    width: 100%;
 }
 
 .disabled {
-  color: #5c5e5f
+    color: #5c5e5f;
 }

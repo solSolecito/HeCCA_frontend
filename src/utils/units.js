@@ -44,4 +44,22 @@ const time = [
     },
 ]
 
-export { area, time }
+const flow = [
+    {
+        value: 'm3s',
+        label: 'm³/s',
+        toM3s: (n) => n 
+    },
+    {
+        value: 'ls',
+        label: 'litro/s',
+        toM3s: (n) => n / 1000
+    },
+    {
+        value: 'ft3s',
+        label: 'ft³/s',
+        toM3s : (n) => n * Math.pow( 12 * 0.0254, 3 )
+    },
+]
+
+export { area, time, flow }

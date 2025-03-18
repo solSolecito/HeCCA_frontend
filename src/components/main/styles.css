@@ -6,11 +6,11 @@ main {
 }
 
 section {
-    max-width: 960px;
+    max-width: 720px;
     width: 80%;
     background-color: #fff6;
     padding: 12px 24px;
     margin: 12px 0;
     border-radius: 0 24px;
-    box-shadow: 3px 3px 6px #1d1a37;
+    /*box-shadow: 3px 3px 6px #1d1a37;*/
 }

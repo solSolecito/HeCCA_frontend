@@ -1,11 +1,12 @@
 import React from 'react';
 import './styles.css';
+
 import logo from "../../assets/logo_SIHU.png";
 
 export class Header extends React.Component {
-    /* El header tiene 2 partes: 
-    - El header de SIHU
-    - El header del proyecto individual */
+    /* 2 headers:  
+    - El de SIHU
+    - El del proyecto individual */
 
     render() {
         return (

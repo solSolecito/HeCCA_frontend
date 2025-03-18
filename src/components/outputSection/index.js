@@ -1,11 +1,21 @@
-import React, { useState } from 'react';
+import React from 'react';
+//import PropTypes from 'prop-types';
+//import LineChart from '../chartLine';
+
 import './styles.css';
 
-export function OutputSection(props) {
-
+export function OutputSection( /*props*/ ) {
+	// Que recibe el output?
 	return (
-		<section className="preprocessing">
-			<p>porcentajes</p>
+		<section className="output">
+			<p>Todo lo que retorna el python</p>
+			
 		</section>
 	);
 }
+/* <LineChart> </LineChart> 
+
+OutputSection.propTypes = {
+	display: PropTypes.bool
+}
+*/

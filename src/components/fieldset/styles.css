@@ -1,0 +1,41 @@
+fieldset {
+    border-style: hidden;
+}
+
+legend {
+    text-align: center;
+    font-weight: 700;
+    font-size: 24px;
+}
+
+p {
+    margin: 0; 
+}
+
+.fs-header {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: right;
+    background-image: url("../../assets/headerBG.png");
+}
+
+.inactive {
+    background-image: url("../../assets/headergrayBG.png");
+}
+
+
+@media (orientation: landscape) {
+    .fs-header {
+        height: calc(100vh/9);
+    }
+}
+
+@media (orientation: portrait) {
+    .fs-header {
+        height: calc(100vw/9);
+    }
+}

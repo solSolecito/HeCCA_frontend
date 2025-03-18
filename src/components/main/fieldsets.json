@@ -1,0 +1,17 @@
+[
+    {
+        "id": "QMedDiario",
+        "type": "flow",
+        "title": "Caudales Medios Diarios"
+    },
+    {
+        "id": "QMinDiario",
+        "type": "flow",
+        "title": "Caudales Mínimos Diarios"
+    },
+    {
+        "id": "QMaxDiario",
+        "type": "flow",
+        "title": "Caudales Máximos Diarios"
+    }
+]

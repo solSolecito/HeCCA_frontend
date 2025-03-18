@@ -2,7 +2,11 @@
 
 Versión Actual: 2.0 
 
-Esta es una herramienta creada por estudiantes de la Universidad Nacional de Colombia diseñada para el calculo y analisis hidrologico del Caudal Ambiental
+El desarrollo de esta **Herramienta de Cálculo de Caudal Ambiental** (HeCCA) se ha llevado a cabo por estudiantes de la Universidad Nacional de Colombia para facilitar una herramienta para Calcular Caudal Ambiental a partir de los datos abiertos del **Instituto de Hidrología, Meteorología y Estudios Ambientales** (IDEAM), siguiendo el método descrito por dicha entidad y el **Ministerio de Medio Ambiente y Desarrollo Sostenible** (MADS) de la Republica de Colombia.
+
+El cálculo de Caudal Ambiental se realiza para dimensionar los caudales de aprovechamiento necesarios para conservar los servicios ecosistemicos brindados por un cauce de agua. En otras palabras nos responde a la pregunta: ¿Qué tanta agua podemos sacarle un rio sin acabar con el rio?
+
+Con esta versión se hace disponible una aplicación web que tiene como principal objetivo convertirse en una herramienta de analisis hidrologico sencilla de usar y con resultados fiables para mejorar la gestión hidrica desde la población general.
 
 ## Sobre esta versión
 
@@ -80,5 +84,12 @@ Una solución puede ser correr el [backend](https://github.com/hidrourbana/HeCCA
 
 Sin embargo no deberia haber mayor problema para correr el proyecto si esto aparece.
 
-
 Tienes algún otro inconveniente? Puedes comunicarte via email con  hidrourbana_bog@unal.edu.co
+
+
+## Notas FrontEnd
+
+La aplicación se compone de 3 partes.
+- Header
+- Content
+- Footer

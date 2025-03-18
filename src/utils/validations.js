@@ -1,3 +1,10 @@
+const validFileTypes = [
+    "csv",
+    "text/csv",
+    "xslx",
+    "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+];
+
 function number(num, positive = true) {
     // Revisar que las areas sean números.
     if (typeof num !== 'number') {
@@ -31,7 +38,7 @@ function number(num, positive = true) {
 
 function unit(unit, unitsArray) {
     // Revisar que la unidad seleccionada esté en el arreglo
-    const selected = unitsArray.find(un => un.value == unit);
+    const selected = unitsArray.find(un => un.value === unit);
     if (!selected.label && !selected.value) {
         return {
             valid: false,
@@ -44,14 +51,7 @@ function unit(unit, unitsArray) {
     }
 }
 
-
 function csv(file) {
-    const validFileTypes = [
-        "csv",
-        "text/csv",
-        "xslx",
-        "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-    ];
 
     // Revisa que se haya subido un archivo
     if (!file) {
@@ -69,9 +69,8 @@ function csv(file) {
             valid: false,
             msg: 'El archivo no es de un tipo válido'
         }
-    }
-
-    // Revisa encabezado
+    } 
+    // Revisa encabezados
 
     // Llama a API para com´probar años
 
@@ -82,4 +81,4 @@ function csv(file) {
     }
 }
 
-export { number, unit, csv }
+export { number, unit, csv, validFileTypes }

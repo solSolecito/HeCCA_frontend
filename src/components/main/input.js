@@ -1,50 +1,137 @@
 import React, { useState } from "react";
 import { Fieldset } from "../fieldset";
+
 import "./styles.css";
+import * as rawMethodologies from "./methodologies.json";
+import * as rawFieldsets from "./fieldsets.json";
+import saveJSON from "../../services/saveJSON";
 
-const methods = [
-    {
-        id: "ideam",
-        label: "IDEAM - MADS",
-        req: ["QMedDiario"],
-        opt: ["QMinDiario"],
-    },
-    {
-        id: "anla",
-        label: "ANLA - MADS",
-        req: ["QMedDiario", "QMaxDiario", "QMinDiario"],
-        opt: [],
-    },
-];
+const defaultMethod = 'ideam';
 
-const modulos = {
-    QMedDiario: {
-        type: "flow",
-        title: "Caudales Medios Diarios",
-        legend: "Caudales Medios Diarios",
-    },
-    QMinDiario: {
-        type: "flow",
-        title: "Caudales Mínimos Diarios",
-        legend: "Caudales Mínimos Diarios",
-    },
-    QMaxDiario: {
-        type: "flow",
-        title: "Caudales Máximos Diarios",
-        legend: "Caudales Máximos Diarios",
-    },
-};
+const obj2Arr  = ( obj ) => {
+    const arr = [];
+    for (const key in obj) {
+        if (Object.prototype.hasOwnProperty.call(obj, key)) {
+            if( !isNaN(key) ) {
+                arr[key] = obj[key]
+            }
+        }
+    }
+    return arr;
+}
 
 export function InputSection() {
+    const methodologies = obj2Arr(rawMethodologies);
+    const fieldsets = obj2Arr(rawFieldsets);
+
+    // Parte 1: Metodologias - - -
+
     const [reqMethods, setReqMethods] = useState(
-        methods.map((m) => m.id === "ideam")
+        methodologies.map((m) => m.id === defaultMethod)
     );
     const [validationMethods, setValidationMethods] = useState(true);
-    const [message, setMessage] = useState("");
-    const [inputData, setInputData] = useState([]);
+
+    const optionsList = methodologies.map((m, index) => {
+        return {
+            id: m.id,
+            label: m.label,
+            required: m.id === defaultMethod,
+            checked: reqMethods[index],
+       };
+    });
+
+    const updateMethods = ( { active, valid } ) => {
+        setReqMethods(active);
+        setValidationMethods(valid);
+    }
+    
+    const fsMethods = < Fieldset
+        id = { "methodologies" }
+        title = { "Metodologíashasudwi" }
+        legend = { "Metodologíaaaaaaaas" }
+        active = { true }
+        required = { true }
+        type = { "checks" }
+        getData = { updateMethods }
+        optionsList = { optionsList }
+        minCheck = { 1 }
+    />
 
     const reqFS = [];
     const optFS = [];
+
+    reqMethods.forEach( (met, ind) => {
+        if( met ) {
+            methodologies[ind].required.forEach( ( fsName ) => {
+                if( !reqFS.includes(fsName) ) {
+                    reqFS.push(fsName);
+                }
+                if( optFS.includes( fsName ) ) {
+                    let index = optFS.findIndex((prevFS) => prevFS === fsName);
+                    optFS.splice(index, 1)
+                }
+            })
+            methodologies[ind].optional.forEach( ( fsName ) => {
+                if( reqFS.includes( fsName ) ) {
+                    // NOOP
+                } else if( !optFS.includes( fsName ) ) {
+                    optFS.push(fsName)
+                }
+            })
+        }
+    })
+
+    const [inputData, setInputData] = useState([]);
+    const [message, setMessage] = useState("");
+
+    const updateData = (id, {data, valid} ) => {
+        const prev = inputData.find( dataSet => dataSet.id === id );
+        if (!prev) {
+            inputData.push( {
+                id,
+                data,
+                valid
+            })
+        } else {
+            prev.data = data;
+            prev.valid = valid;
+        }
+        setInputData([...inputData]);
+    }
+
+    function sendJson() {
+        // Validar metodologías
+        if ( !validationMethods ) {
+            setMessage('Selección de metodologías invalida.')
+            return;
+        }
+        //Validar campos requeridos
+        const validationReq = reqFS.map(( fsName ) => {
+            const ds = inputData.find( ( dataSet ) => dataSet.id === fsName );
+            return ds ? ds.valid : undefined;
+        })
+        if( validationReq.includes(undefined) ) {
+            setMessage('Uno o más de los campos requeridos no han sido completados.');
+            return;
+        }
+        if( validationReq.includes( false ) ) {
+            setMessage('Uno o más de los campos requeridos no son válidos.');
+            return;
+        }
+
+        setMessage('');
+        const methods = [];
+        reqMethods.forEach( ( met, ind ) => {
+            if( met ) {
+                methods.push( methodologies[ind].id )
+            }
+        });
+        const config = {
+            methods
+        }
+        const data = inputData.filter(dataSet => dataSet.valid);
+        saveJSON( { config, data }, 'test' )
+    }
 
     // Esta sección RECIBE los datos de entrada y los convierte en un JSON.
 
@@ -64,7 +151,8 @@ export function InputSection() {
         }
     }] */
 
-    const updateInputObj = () => {
+
+/*    const updateInputObj = () => {
         inputData.forEach((inputBlock) => {
             if (inputBlock.id) {
                 inputBlock.required = reqFS.includes(inputBlock.id);
@@ -93,27 +181,6 @@ export function InputSection() {
             }
         });
     };
-
-    const checkRequiredFS = () => {
-        // Revisa los Fielsets requeridos:
-        reqMethods.forEach((met, index) => {
-            if (met) {
-                methods[index].req.forEach((fsName) => {
-                    if (fsName) {
-                        if (optFS.includes(fsName)) {
-                            optFS.splice(optFS.indexOf(fsName), 1);
-                        }
-                        if (!reqFS.includes(fsName)) {
-                            reqFS.push(fsName);
-                        }
-                    }
-                });
-            }
-        });
-        updateInputObj();
-    };
-
-    checkRequiredFS();
 
     const methodsList = methods.map((m, index) => {
         return {
@@ -181,44 +248,7 @@ export function InputSection() {
         // Petición a API
     }
 
-    return (
-        <section className="input">
-            <form>
-                <Fieldset
-                    legend={"Metodologías"}
-                    id={"methodologies"}
-                    type={"checks"}
-                    required={true}
-                    optionsList={methodsList}
-                    minCheck={1}
-                    getData={getCheckData}
-                ></Fieldset>
-
-                {inputData.map((input, index) => {
-                    const moduleInfo = modulos[input.id];
-                    if (moduleInfo) {
-                        console.log("INPUTprops", input);
-                        return (
-                            <Fieldset
-                                key={"fs-" + index}
-                                getData = { (data) => updateData({ id: input.id, ...data})}
-                                {...input}
-                                {...moduleInfo}
-                            />
-                        );
-                    } else {
-                        return <></>;
-                    }
-                })}
-                <div className="container-btns">
-                    <div> {message}</div>
-                    <button className="btn btn-main" onClick={calcule}>
-                        Calcular
-                    </button>
-                </div>
-            </form>
-        </section>
-    );
+    
 } //208
 // 262
 // 346
@@ -312,3 +342,76 @@ export function InputSection() {
         },
     ];
     */
+
+    /*return (
+        <section className="input">
+            <form>
+                {inputData.map((input, index) => {
+                    const moduleInfo = modulos[input.id];
+                    if (moduleInfo) {
+                        console.log("INPUTprops", input);
+                        return (
+                            <Fieldset
+                                key={"fs-" + index}
+                                getData = { (data) => updateData({ id: input.id, ...data})}
+                                {...input}
+                                {...moduleInfo}
+                            />
+                        );
+                    } else {
+                        return <></>;
+                    }
+                })}
+                <div className="container-btns">
+                    
+                </div>
+            </form>
+        </section>
+    ); */
+
+    function calcule (e) {
+        e.preventDefault();
+        sendJson();
+        console.log(inputData)
+    }
+
+   return (
+    <section className="input">
+        <form name="input_calc">
+            { fsMethods }
+            { reqFS.map( (fsId, ind) => {
+                const props = fieldsets.find( fs => fs.id === fsId );
+                console.log( fsId, props)
+                return props ? ( <Fieldset 
+                    key = { ind }
+                    active = { true }
+                    required = { true }
+                    getData = { ( getted ) => updateData ( fsId, getted ) }
+                    {... props }
+                />) : <></>
+            }) }
+            { optFS.map( (fsId, ind) => {
+                const props = fieldsets.find( fs => fs.id === fsId );
+                console.log( fsId, props)
+                return props ? ( <Fieldset 
+                    key = { ind }
+                    active = { false }
+                    required = { false }
+                    getData = { ( getted ) => updateData ( fsId, getted ) }
+                    {... props }
+                />) : <></>
+            }) }
+            <fieldset
+                id="calc"
+                className="buttons"
+                title="calcular"
+            >
+                <div> {message}</div>
+                    <button className="btn btn-main" onClick={calcule}>
+                        Calcular
+                    </button>
+            </fieldset>
+        </form>
+    </section>
+   )
+}

@@ -1,0 +1,16 @@
+[
+    {
+        "id": "ideam",
+        "country": "CO",
+        "label": "IDEAM - MADS",
+        "required": ["QMedDiario"],
+        "optional": ["QMinDiario"]
+    },
+    {
+        "id": "anla",
+        "country": "CO",
+        "label": "ANLA - MADS",
+        "required": ["QMedDiario", "QMaxDiario", "QMinDiario"],
+        "optional": []
+    }
+]

@@ -1,22 +1,109 @@
-fieldset {
-    border-style: hidden;
-    padding: 16px 0;
+@import url('../../variables.css');
+
+* {
+    box-sizing: border-box;
 }
 
-legend {
-    font-weight: 700;
-    font-size: 20px;
+/* BOTONES SUBIDA */
+
+.label-file {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+}
+
+/* MENSAJES */
+
+.msg {
+    font-weight: 600;
+    color: var(--main-darkest);
     text-align: center;
 }
 
-input, label {
-    margin: 8px 4px;
-    border: 1px #6AB5DE;
+.msg-err {
+    color: var(--brown-l);
+}
+
+.msg-warn {
+    color: var(--ocher-d);
+}
+
+/* IMAGENES */
+
+.big-icon {
+    width: 120px;
+}
+
+.input-wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.upload-button,
+.upload-button label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 12px 0;
+}
+
+.magnitude-input {
+    display: flex;
+    flex-direction: row;
+    gap: 24px;
+}
+
+.magnitude-input label {
+    width: 50%;
+    text-align: right;
+}
+.magnitude-input input {
+    box-sizing: border-box;
+    height: 24px;
+    padding: 3px 12px;
+    border: 1px solid var(--main-d);
+    border-radius: 0 24px 0 24px;
 }
 
 select, option {
-    border: 1px #6AB5DE
+    appearance: none;
+    border: none;
+    outline: none;
+    font-family: inherit;
+    font-size: inherit;
 }
+
+select {
+    height: 24px;
+    padding: 0 16px;
+    border-radius: 0 24px 0 24px;
+
+    background-color: var(--main-dd);
+    color: #FFFFFF;
+}
+select:active, select:hover {
+    border-radius: 0;
+}
+
+option {
+    background-color: var(--main-ll);
+    color: var(--main-darkest);
+}
+
+option:selection {
+    background-color: var(--main-dd);
+    color: #FFFFFF;
+}
+
+input,
+label {
+    margin: 12px 8px;
+    border: 10px #6ab5de solid;
+}
+
+
 
 .cont-area {
     display: flex;
@@ -24,12 +111,12 @@ select, option {
     align-items: center;
 }
 
-.cont-area>* {
+.cont-area > * {
     width: 40%;
     margin: 0 5%;
 }
 
-.cont-area>label {
+.cont-area > label {
     text-align: right;
 }
 
@@ -39,17 +126,12 @@ select, option {
     align-items: center;
 }
 
-.cont-q>input {
+.cont-q > input {
     max-width: 50px;
 }
 
-.pop-up{
-    width: 50%;
-    height: auto;
-    display: flex;
-    align-self: center;
-    justify-self: center;
-    position: absolute;
+#placeholder {
+    color: var(--gray-dark);
 }
 
 /* .inputfile {
@@ -75,16 +157,21 @@ select, option {
 }
 
 .btn {
-    background-color: #6AB5DE;
-    padding: 4px;
+    background-color: #6ab5de;
+    padding: 12px;
+    height: 36px;
     border: none;
-    color:#fff
+    border-radius: 0 18px 0 18px;
+    color: #fff;
+    font-family: inherit;
+    font-size: inherit;
 }
 
 .message {
     font-weight: 600;
     color: rgb(241, 32, 32);
 }
+
 
 @media (max-width: 820px) {
     .input-section {
@@ -118,11 +205,10 @@ select, option {
 }
 
 .input-section_itemContainer {
-    background-color: #6AB5DE;
+    background-color: #6ab5de;
     border-radius: 50px;
     padding: 15px;
 }
-
 
 .input-section_itemContainer:active {
     background-color: green;
@@ -151,11 +237,10 @@ select, option {
 }
 
 .compare-input__select {
-    background-color: #6AB5DE;
-
+    background-color: #6ab5de;
 }
 
-.inputfile+label {
+.inputfile + label {
     max-width: 100%;
     font-size: 1.25rem;
     font-weight: 700;
@@ -167,7 +252,7 @@ select, option {
     padding: 0.625rem 1.25rem;
 }
 
-.inputfile-4+label figure {
+.inputfile-4 + label figure {
     width: 100px;
     height: 100px;
     border-radius: 50%;
@@ -183,7 +268,6 @@ select, option {
     flex-direction: column;
     align-items: center;
 }
-
 
 .input-section_itemContainer img {
     width: 100%;
@@ -203,7 +287,7 @@ select, option {
 }
 
 .btn-submit_btn {
-    background-color: #6AB5DE;
+    background-color: #6ab5de;
     color: #fff;
     text-align: center;
     font-size: 25px;
@@ -223,8 +307,6 @@ select, option {
 .btn-submit_btn:hover {
     background-color: red;
 }
-
-
 
 /* .btn-submit_btn:active{
     background-color: red;
